@@ -12,7 +12,21 @@ jQuery, alert, console
             return Math.random() - 0.5;
         }).concat(0);
 
-    console.log(arrRandom);
+    function solvablePuzzle(a) {
+        var i, j, counter = 0;
+        for (i = 0; i < a.length - 1; i += 1) {
+            for (j = 1; j < a.length - 1; j += 1) {
+                if (a[i] > a[j]) {
+                    counter += 1;
+                }
+            }
+        }
+        return (counter % 2 === 0);
+    }
+
+    function swap(a, b) {
+
+    }
 
     function createKnuckles() {
         var i, length = arrRandom.length;
