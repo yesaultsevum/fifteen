@@ -10,7 +10,9 @@ jQuery, alert, console
         arrIsCoplete = arrayKnuckle.concat(0), //порядок собранных костяшек
         arrRandom = arrayKnuckle.sort(function () { //перемешиваем порядок костяшек
             return Math.random() - 0.5;
-        }).concat(0);
+        }).concat(0),
+        moves_counter = 0,
+        timerStop;
 
     function solvablePuzzle(order) { //проверка порядка костяшек на решаемость
         var i, j, counter = 0;
@@ -24,20 +26,20 @@ jQuery, alert, console
         return !(counter % 2 === 0);
     }
 
-    function swap(item1, item2) { //обмен местами костяшек
-        var t = item2;
-        item2 = item1;
-        item1 = t;
+    function swap(order, item1, item2) { //обмен местами костяшек
+        var t = order[item2];
+        order[item2] = order[item1];
+        order[item1] = t;
     }
 
     if (solvablePuzzle(arrRandom)) {
-        swap(arrRandom[0], arrRandom[1]);
+        swap(arrRandom, 0, 1);
     }
 
     function createKnuckles(order) { //отрисовка костяшек
         var i, length = order.length;
         for (i = 0; i < length; i += 1) {
-            $('.box').append('<div id = "' + (i + 1) + '" class = "knuckle">' + order[i] + '</div>');
+            $('.box').append('<div id = "' + (i + 1) + '" class = "knuckle on">' + order[i] + '</div>');
             $('#16').addClass('zero');
         }
     }
@@ -49,13 +51,9 @@ jQuery, alert, console
     }
 
     function timer() {
-        var minutes = 0,
-        mm,
-        seconds = 0,
-        ss,
-        time;
+        var minutes = 0, mm, seconds = 0, ss, time;
 
-        setInterval(function () {
+        var timerGo = setInterval(function () {
             seconds += 1;
             if (seconds < 10) {
                 ss = '0' + seconds;
@@ -83,16 +81,26 @@ jQuery, alert, console
 
         }, 1000);
 
+        timerStop = function () {
+            clearInterval(timerGo);
+        };
+
+    }
+
+    function movesCounter() {
+        moves_counter += 1;
+        $('.moves_inner_counter').text(moves_counter);
     }
 
     $('.puzzle_cover').on('click', function () {
-    	$('.puzzle_cover').hide();
-    	createKnuckles(arrRandom);
-    	timer();
+        $('.puzzle_cover').hide();
+        createKnuckles(arrRandom);
+        timer();
     });
 
-    $(document).on('click', '.knuckle', function () { //движения костяшек при клике
+    $(document).on('click', '.on', function () { //движения костяшек при клике
         var value, id, matches = 0, i, item;
+
         value = $(this).text();
         id = +$(this).attr('id');
 
@@ -100,21 +108,25 @@ jQuery, alert, console
             $(this).addClass('zero').text(0);
             $('#' + (id + 1) + '').removeClass('zero').text(value);
             sound();
+            movesCounter();
         }
         if ($('#' + (id - 1) + '').hasClass('zero') && (id !== 13 && id !== 9 && id !== 5)) {
             $(this).addClass('zero').text(0);
             $('#' + (id - 1) + '').removeClass('zero').text(value);
             sound();
+            movesCounter();
         }
         if ($('#' + (id - 4) + '').hasClass('zero')) {
             $(this).addClass('zero').text(0);
             $('#' + (id - 4) + '').removeClass('zero').text(value);
             sound();
+            movesCounter();
         }
         if ($('#' + (id + 4) + '').hasClass('zero')) {
             $(this).addClass('zero').text(0);
             $('#' + (id + 4) + '').removeClass('zero').text(value);
             sound();
+            movesCounter();
         }
         // Проверка на собранность
         for (i = 1; i <= 16; i += 1) {
@@ -127,8 +139,20 @@ jQuery, alert, console
         }
         if (matches === 16) {
             alert('COMPLETE!');
-            $(document).off('click', '.knuckle');
+            timerStop();
+            $('.knuckle').removeClass('on');
+            $('.new_game').fadeIn(500);
         }
+    });
+
+    $('.new_game').on('click', function () {
+        $('.box').empty();
+        moves_counter = 0;
+        $('.moves_inner_counter').text(moves_counter);
+        createKnuckles(arrRandom);
+        $('.knuckle').addClass('on');
+        timer();
+        $(this).fadeOut(500);
     });
 
 }(jQuery));
