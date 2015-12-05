@@ -99,34 +99,35 @@ jQuery, alert, console
     });
 
     $(document).on('click', '.on', function () { //движения костяшек при клике
-        var value, id, matches = 0, i, item;
+        var value = $(this).text(),
+            id = +$(this).attr('id'),
+            matches = 0,
+            i,
+            item,
+            that = $(this),
+            toRight = $('#' + (id + 1) + ''),
+            toLeft = $('#' + (id - 1) + ''),
+            toUp = $('#' + (id - 4) + ''),
+            toDown = $('#' + (id + 4) + '');
 
-        value = $(this).text();
-        id = +$(this).attr('id');
+        function moveKnuckle(direction) {
+            that.addClass('zero').text(0);
+            direction.removeClass('zero').text(value);
+            sound();
+            movesCounter();
+        }
 
-        if ($('#' + (id + 1) + '').hasClass('zero') && (id !== 12 && id !== 8 && id !== 4)) {
-            $(this).addClass('zero').text(0);
-            $('#' + (id + 1) + '').removeClass('zero').text(value);
-            sound();
-            movesCounter();
+        if (toRight.hasClass('zero') && (id !== 12 && id !== 8 && id !== 4)) {
+            moveKnuckle(toRight);
         }
-        if ($('#' + (id - 1) + '').hasClass('zero') && (id !== 13 && id !== 9 && id !== 5)) {
-            $(this).addClass('zero').text(0);
-            $('#' + (id - 1) + '').removeClass('zero').text(value);
-            sound();
-            movesCounter();
+        if (toLeft.hasClass('zero') && (id !== 13 && id !== 9 && id !== 5)) {
+            moveKnuckle(toLeft);
         }
-        if ($('#' + (id - 4) + '').hasClass('zero')) {
-            $(this).addClass('zero').text(0);
-            $('#' + (id - 4) + '').removeClass('zero').text(value);
-            sound();
-            movesCounter();
+        if (toUp.hasClass('zero')) {
+            moveKnuckle(toUp);
         }
-        if ($('#' + (id + 4) + '').hasClass('zero')) {
-            $(this).addClass('zero').text(0);
-            $('#' + (id + 4) + '').removeClass('zero').text(value);
-            sound();
-            movesCounter();
+        if (toDown.hasClass('zero')) {
+            moveKnuckle(toDown);
         }
         // Проверка на собранность
         for (i = 1; i <= 16; i += 1) {
