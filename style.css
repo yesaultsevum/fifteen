@@ -27,7 +27,7 @@ body{
 	font-size: 2em;
 }
 .new_game{
-	margin: 30px auto;
+	margin: 10px auto;
 	height: 100px;
 	border-radius: 5px;
 	box-shadow: 1px 1px 5px #555;
@@ -43,7 +43,8 @@ body{
 	padding-top: 30px;
 }
 .new_game:hover{
-	background-color: #E7E7E7;
+	color: white;
+	background: #6BB14E;
 }
 .time{
 	margin: 30px auto 0px;
@@ -83,6 +84,36 @@ body{
 	font-family: Helvetica;
 	font-size: 4em;
 }
+.records{
+	margin: 10px auto 0px;
+	height: 228px;
+	border-radius: 5px;
+	box-shadow: 1px 1px 5px #555;
+}
+.records_label{
+	padding-top: 5px;
+	text-align: center;
+	font-weight: bold;
+	font-family: Helvetica;
+	letter-spacing: 2px;
+}
+.enter_name{
+	margin: 30px auto 0px;
+	height: 100px;
+	border-radius: 5px;
+	box-shadow: 1px 1px 5px #555;
+}
+.enter_name_label{
+	padding-top: 10px;
+	text-align: center;
+	font-weight: bold;
+	font-family: Helvetica;
+}
+#enter_name_input{
+	margin: 15px 5% 0px;
+	height: 40px;
+	width: 90%;
+}
 .knuckle{
 	width: 100px;
 	height: 100px;
@@ -99,19 +130,65 @@ body{
 .zero{
 	visibility: hidden;
 }
+.th_name{
+	width: 50%;
+}
+.td_moves{
+	text-align: center;
+}
+.table{
+	margin-top: 10px;
+}
 
 
-@media screen and (max-width: 990px) {
-    .new_game{
-    	width: 50%;
+@media screen and (max-width: 991px) {
+    .box{
+    	margin: 20px auto 0px;
     }
     .time{
-    	width: 30%;
+    	margin-top: 20px;
+    	width: 215px;
+    	height: 80px;
         display: inline-block;
-        margin-left: 20%;
     }
     .moves{
-    	width: 30%;
+    	margin-top: 20px;
+    	width: 215px;
+    	height: 80px;
     	display: inline-block;
+    }
+    .timer, .moves_counter{
+    	font-size: 3em;
+    }
+    .enter_name{
+    	margin: 10px auto 0px;
+    	height: 50px;
+    	width: 430px;
+    }
+    .enter_name_label{
+        display: inline-block;
+        padding-top: 10px;
+        font-weight: bold;
+        font-family: Helvetica;
+        margin-left: 6%;
+    }
+    #enter_name_input{
+       margin: 8px 2% 0px;
+       height: 35px;
+       width: 52%;
+       display: inline-block;
+    }
+    .wrapper_right_block{
+    	width: 435px;
+    	margin: 0 auto;
+    }
+    .new_game{
+	margin: 10px auto;
+	height: 50px;
+	width: 430px;
+	font-size: 1.5em;
+    }
+    .new_game > div{
+	    padding-top: 10px;
     }
 }

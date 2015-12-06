@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
 	<title>Fifteen puzzle</title>
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="style.css">
@@ -10,7 +11,11 @@
     <div class = "container">
     	<div class = "row">
     	    <div class = "col-md-3">
-    	    	<div class = "new_game">
+    	    	<div class ="enter_name">
+                    <div class = "enter_name_label">ENTER YOUR NAME:</div>
+                    <input type="text" class="form-control" id="enter_name_input" placeholder="Name">
+                </div>
+                <div class = "new_game">
     	    		<div>New Game</div>
     	    	</div>
     	    </div>
@@ -23,18 +28,31 @@
     			</div>
     		</div>
     		<div class = "col-md-3">
-    			<div class = "time">
-    				<div class = "time-label">TIME:</div>
-    				<div class = "timer">
-    					<span class = "inner_time">00:00</span>
-    				</div>
-    			</div>
-    			<div class ="moves">
+                <div class = "wrapper_right_block">
+    			    <div class = "time">
+    				    <div class = "time-label">TIME:</div>
+    				    <div class = "timer">
+    					    <span class = "inner_time">00:00</span>
+    				    </div>
+    			    </div>
+    			    <div class ="moves">
     				<div class = "moves_text">MOVES:</div>
     				<div class = "moves_counter">
                         <span class = "moves_inner_counter">0</span>
     				</div>
-    			</div>
+    			    </div>
+                </div>
+                <div class = "records">
+                    <div class = "records_label">RECORDS:</div>
+                    <table class="table table-striped table-records">
+                         <tr>
+                             <th>#</th>
+                             <th class = "th_name">Name</th>
+                             <th>Time</th>
+                             <th>Moves</th>
+                         </tr>
+                    </table>
+                </div>
     		</div>
     	</div>
     </div>

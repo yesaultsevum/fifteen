@@ -12,7 +12,9 @@ jQuery, alert, console
             return Math.random() - 0.5;
         }).concat(0),
         moves_counter = 0,
-        timerStop;
+        timerStop,
+        time,
+        arrRecords = [];
 
     function solvablePuzzle(order) { //проверка порядка костяшек на решаемость
         var i, j, counter = 0;
@@ -23,7 +25,7 @@ jQuery, alert, console
                 }
             }
         }
-        return !(counter % 2 === 0);
+        return (counter % 2 !== 0);
     }
 
     function swap(order, item1, item2) { //обмен местами костяшек
@@ -51,7 +53,7 @@ jQuery, alert, console
     }
 
     function timer() {
-        var minutes = 0, mm, seconds = 0, ss, time;
+        var minutes = 0, mm, seconds = 0, ss;
 
         var timerGo = setInterval(function () {
             seconds += 1;
@@ -92,6 +94,23 @@ jQuery, alert, console
         $('.moves_inner_counter').text(moves_counter);
     }
 
+    function entryRecord() {
+        var name_to_records = $('#enter_name_input').val(),
+            time_to_records = time,
+            moves_to_records = moves_counter,
+            current_user_data = {
+                name: name_to_records,
+                time: time_to_records,
+                moves: moves_to_records
+            },
+            position_in_ranking = arrRecords.length;
+
+        arrRecords[position_in_ranking] = current_user_data;
+        console.log(arrRecords);
+
+        $('.table-records').append("<tr><td class='td_number'></td><td class='td_name'>" + name_to_records + "</td><td class='td_time'>" + time_to_records + "</td><td class='td_moves'>" + moves_to_records + "</td></tr>");
+    }
+
     $('.puzzle_cover').on('click', function () {
         $('.puzzle_cover').hide();
         createKnuckles(arrRandom);
@@ -109,6 +128,8 @@ jQuery, alert, console
             toLeft = $('#' + (id - 1) + ''),
             toUp = $('#' + (id - 4) + ''),
             toDown = $('#' + (id + 4) + '');
+
+            entryRecord();
 
         function moveKnuckle(direction) {
             that.addClass('zero').text(0);
@@ -142,7 +163,7 @@ jQuery, alert, console
             alert('COMPLETE!');
             timerStop();
             $('.knuckle').removeClass('on');
-            $('.new_game').fadeIn(500);
+            $('.new_game').slideDown(500);
         }
     });
 
@@ -153,7 +174,7 @@ jQuery, alert, console
         createKnuckles(arrRandom);
         $('.knuckle').addClass('on');
         timer();
-        $(this).fadeOut(500);
+        $(this).slideUp(500);
     });
 
 }(jQuery));
