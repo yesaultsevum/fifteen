@@ -35,7 +35,8 @@ body{
 	font-weight: bold;
 	font-family: Helvetica;
 	font-size: 2em;
-	background-color: white;
+	background: #6BB14E;
+	color: white;
 	cursor: pointer;
     display: none;
 }
@@ -44,22 +45,22 @@ body{
 }
 .new_game:hover{
 	color: white;
-	background: #6BB14E;
+	background: #68AB4D;
 }
-.time{
+.time, .moves, .records, .enter_name{
 	margin: 30px auto 0px;
 	height: 100px;
 	border-radius: 5px;
 	box-shadow: 1px 1px 5px #555;
 }
-.time-label{
+.time-label, .moves_text, .records_label, .enter_name_label{
 	padding-top: 5px;
 	text-align: center;
 	font-weight: bold;
 	font-family: Helvetica;
 	letter-spacing: 2px;
 }
-.timer{
+.timer, .moves_counter{
 	text-align: center;
 	font-weight: bold;
 	font-family: Helvetica;
@@ -67,47 +68,14 @@ body{
 }
 .moves{
 	margin: 10px auto 0px;
-	height: 100px;
-	border-radius: 5px;
-	box-shadow: 1px 1px 5px #555;
-}
-.moves_text{
-	padding-top: 5px;
-	text-align: center;
-	font-weight: bold;
-	font-family: Helvetica;
-	letter-spacing: 2px;
-}
-.moves_counter{
-	text-align: center;
-	font-weight: bold;
-	font-family: Helvetica;
-	font-size: 4em;
 }
 .records{
 	margin: 10px auto 0px;
 	height: 228px;
-	border-radius: 5px;
-	box-shadow: 1px 1px 5px #555;
-}
-.records_label{
-	padding-top: 5px;
-	text-align: center;
-	font-weight: bold;
-	font-family: Helvetica;
-	letter-spacing: 2px;
-}
-.enter_name{
-	margin: 30px auto 0px;
-	height: 100px;
-	border-radius: 5px;
-	box-shadow: 1px 1px 5px #555;
 }
 .enter_name_label{
 	padding-top: 10px;
-	text-align: center;
-	font-weight: bold;
-	font-family: Helvetica;
+	letter-spacing: 0px;
 }
 #enter_name_input{
 	margin: 15px 5% 0px;
@@ -145,17 +113,11 @@ body{
     .box{
     	margin: 20px auto 0px;
     }
-    .time{
+    .time, .moves{
     	margin-top: 20px;
     	width: 215px;
     	height: 80px;
         display: inline-block;
-    }
-    .moves{
-    	margin-top: 20px;
-    	width: 215px;
-    	height: 80px;
-    	display: inline-block;
     }
     .timer, .moves_counter{
     	font-size: 3em;
@@ -190,5 +152,8 @@ body{
     }
     .new_game > div{
 	    padding-top: 10px;
+    }
+    .records{
+    	width: 430px;
     }
 }

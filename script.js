@@ -103,12 +103,23 @@ jQuery, alert, console
                 time: time_to_records,
                 moves: moves_to_records
             },
+            i,
             position_in_ranking = arrRecords.length;
 
         arrRecords[position_in_ranking] = current_user_data;
-        console.log(arrRecords);
+        arrRecords.sort(function (a, b) {
+            if (a.time.split(':')[0] !== b.time.split(':')[0]) {
+                return a.time.split(':')[0] > b.time.split(':')[0];
+            } else {
+                return a.time.split(':')[1] > b.time.split(':')[1];
+            }
+        }).splice(4);
 
-        $('.table-records').append("<tr><td class='td_number'></td><td class='td_name'>" + name_to_records + "</td><td class='td_time'>" + time_to_records + "</td><td class='td_moves'>" + moves_to_records + "</td></tr>");
+        $('.current_user_record').remove();
+
+        for (i = 0; i < arrRecords.length; i += 1) {
+            $('.table-records').append("<tr class='current_user_record'><td class='td_number'>" + (i + 1) + "</td><td class='td_name'>" + arrRecords[i].name + "</td><td class='td_time'>" + arrRecords[i].time + "</td><td class='td_moves'>" + arrRecords[i].moves + "</td></tr>");
+        }
     }
 
     $('.puzzle_cover').on('click', function () {
@@ -128,8 +139,6 @@ jQuery, alert, console
             toLeft = $('#' + (id - 1) + ''),
             toUp = $('#' + (id - 4) + ''),
             toDown = $('#' + (id + 4) + '');
-
-            entryRecord();
 
         function moveKnuckle(direction) {
             that.addClass('zero').text(0);
@@ -164,6 +173,7 @@ jQuery, alert, console
             timerStop();
             $('.knuckle').removeClass('on');
             $('.new_game').slideDown(500);
+            entryRecord();
         }
     });
 
