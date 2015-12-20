@@ -1,6 +1,8 @@
 body{
 	color: #555;
 	min-width: 540px;
+	background: url(wall.png) repeat;
+	font-family: 'Special Elite', cursive;
 }
 .box{
 	margin: 30px auto 0px;
@@ -13,7 +15,7 @@ body{
 .puzzle_cover{
 	width: 100%;
 	height: 100%;
-	background: #DDDDDD;
+	background: url(wall.png) repeat;
 	z-index: 1;
 	text-align: center;
 	cursor: pointer;
@@ -33,7 +35,6 @@ body{
 	box-shadow: 1px 1px 5px #555;
 	text-align: center;
 	font-weight: bold;
-	font-family: Helvetica;
 	font-size: 2em;
 	background: #6BB14E;
 	color: white;
@@ -47,24 +48,48 @@ body{
 	color: white;
 	background: #68AB4D;
 }
+.switch_sound{
+	margin: 30px auto 0px;
+	height: 30px;
+	border-radius: 5px;
+	box-shadow: 1px 1px 5px #555;
+	cursor: pointer;
+}
+.switch_sound_label{
+	display: inline-block;
+	margin-left: 17%;
+}
+.switch_sound_img{
+    width: 20%;
+    height: 20px;
+    margin: 5px 10px;
+    background: #68AB4D;
+    border-radius: 5px;
+    display: inline-block;
+    float: right;
+}
+.switch_sound:hover{
+	background: #F5F5F5;
+}
 .time, .moves, .records, .enter_name{
 	margin: 30px auto 0px;
 	height: 100px;
 	border-radius: 5px;
 	box-shadow: 1px 1px 5px #555;
 }
-.time-label, .moves_text, .records_label, .enter_name_label{
+.time-label, .moves_text, .records_label, .enter_name_label, .switch_sound_label{
 	padding-top: 5px;
 	text-align: center;
 	font-weight: bold;
-	font-family: Helvetica;
 	letter-spacing: 2px;
 }
 .timer, .moves_counter{
 	text-align: center;
 	font-weight: bold;
-	font-family: Helvetica;
 	font-size: 4em;
+}
+.enter_name{
+	margin: 10px auto 0px;
 }
 .moves{
 	margin: 10px auto 0px;
@@ -93,7 +118,7 @@ body{
 	cursor: pointer;
 	border-radius: 5px;
 	box-shadow: 1px 1px 5px #555;
-	background-color: #E7E7E7;
+	background-color:  #F5F5F5;
 }
 .zero{
 	visibility: hidden;
@@ -107,7 +132,9 @@ body{
 .table{
 	margin-top: 10px;
 }
-
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: inherit;
+}
 
 @media screen and (max-width: 991px) {
     .box{
@@ -131,7 +158,6 @@ body{
         display: inline-block;
         padding-top: 10px;
         font-weight: bold;
-        font-family: Helvetica;
         margin-left: 6%;
     }
     #enter_name_input{
@@ -153,7 +179,7 @@ body{
     .new_game > div{
 	    padding-top: 10px;
     }
-    .records{
+    .records, .switch_sound{
     	width: 430px;
     }
 }

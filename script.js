@@ -14,6 +14,7 @@ jQuery, alert, console
         moves_counter = 0,
         timerStop,
         time,
+        music = true,
         arrRecords = [];
 
     function solvablePuzzle(order) { //проверка порядка костяшек на решаемость
@@ -128,6 +129,16 @@ jQuery, alert, console
         timer();
     });
 
+    $('.switch_sound').on('click', function () {
+        if (music) {
+            $('.switch_sound_img').css('background', '#C32626');
+            music = false;
+        } else {
+            $('.switch_sound_img').css('background', '#68AB4D');
+            music = true;
+        }
+    });
+
     $(document).on('click', '.on', function () { //движения костяшек при клике
         var value = $(this).text(),
             id = +$(this).attr('id'),
@@ -143,8 +154,10 @@ jQuery, alert, console
         function moveKnuckle(direction) {
             that.addClass('zero').text(0);
             direction.removeClass('zero').text(value);
-            sound();
             movesCounter();
+            if (music) {
+                sound();
+            }
         }
 
         if (toRight.hasClass('zero') && (id !== 12 && id !== 8 && id !== 4)) {
